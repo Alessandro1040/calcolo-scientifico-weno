@@ -297,10 +297,13 @@ def main():
     u_ini = u0(x)
     u_exact = exact_solution(u0, x, args.t, args.nx_exact, EXT_FACTOR)
     u_weno = solve_weno(u_ini, dx, args.t, args.cfl)
-    err = np.sum(np.abs(u_weno - u_exact)) * dx / (XMAX - XMIN)
+    diff = np.abs(u_weno - u_exact)
+    err_medio = float(diff.mean())
+    err_l1_rel = float(diff.sum() / np.abs(u_exact).sum())
 
     print(f"Nx={args.nx}  CFL={args.cfl}  T={args.t}")
-    print(f"errore L1 relativo (WENO5 vs esatta) = {err:.6e}")
+    print(f"errore medio |u_num - u_esatta|  = {err_medio:.6e}")
+    print(f"errore L1 relativo (vs ||u_esatta||_1) = {err_l1_rel:.6e}")
 
     plt.figure(figsize=(10, 6))
     plt.plot(x, u_ini, 'k--', linewidth=1.5, label='t=0')

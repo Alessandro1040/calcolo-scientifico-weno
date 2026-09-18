@@ -108,6 +108,14 @@ Il notebook originale del progetto è in `codice/burgers_weno.ipynb`, mentre
 selezionabile) che l'applicazione web mostra e permette di modificare nel
 pannello "Algoritmo".
 
+> **Nota.** Il notebook è l'artefatto originale del progetto e contiene ancora
+> la *vecchia* funzione `exact_burgers` (selezione con il minimo di `u₀`): a
+> `T = 0.4`, che è il valore di default, gli urti non si sono ancora formati e
+> il risultato coincide con quello corretto, quindi i grafici del notebook
+> restano validi. L'implementazione corretta è in `codice/burgers_weno.py`
+> (`exact_solution`); la vecchia regola è conservata lì dentro come
+> `old_min_rule`, solo per il confronto fatto dai test.
+
 ### Test
 
 ```bash
